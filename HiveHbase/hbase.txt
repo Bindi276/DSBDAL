@@ -1,0 +1,236 @@
+
+[cloudera@quickstart ~]$ hbase shell
+2022-05-15 02:07:11,056 INFO  [main] Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.0.0-cdh5.4.2, rUnknown, Tue May 19 17:07:29 PDT 2015
+
+hbase(main):001:0> sudo service hbase-master restart
+SyntaxError: (hbase):1: syntax error, unexpected tIDENTIFIER
+
+sudo service hbase-master restart
+                                ^
+
+hbase(main):002:0> [cloudera@quickstart ~]$ hbase shell
+2022-05-15 02:08:25,630 INFO  [main] Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.0.0-cdh5.4.2, rUnknown, Tue May 19 17:07:29 PDT 2015
+
+hbase(main):001:0> create 'fli','fliinfo','flisch'
+0 row(s) in 0.5150 seconds
+
+=> Hbase::Table - fli
+hbase(main):002:0> list
+TABLE                                                                           
+fli                                                                             
+flight                                                                          
+2 row(s) in 0.0310 seconds
+
+=> ["fli", "flight"]
+hbase(main):003:0> put 'fli',1,'fliinfo:source','Mumbai'
+0 row(s) in 0.1590 seconds
+
+hbase(main):004:0> put 'fli',1,'fliinfo:destination','chennai'
+0 row(s) in 0.0060 seconds
+
+hbase(main):005:0> put 'fli',1,'fliinfo:year','2050'
+0 row(s) in 0.0080 seconds
+
+hbase(main):006:0> put 'fli',1,'flisch:at','10:10am'
+0 row(s) in 0.0150 seconds
+
+hbase(main):007:0> put 'fli',1,'flisch:dt','11:10am'
+0 row(s) in 0.0050 seconds
+
+hbase(main):008:0> put 'fli',1,'flisch:delay',22
+0 row(s) in 0.0080 seconds
+
+hbase(main):009:0> scan 'fli'
+ROW                   COLUMN+CELL                                               
+ 1                    column=fliinfo:destination, timestamp=1652606252610, value
+                      =chennai                                                  
+ 1                    column=fliinfo:source, timestamp=1652606202921, value=Mumb
+                      ai                                                        
+ 1                    column=fliinfo:year, timestamp=1652606363910, value=2050  
+ 1                    column=flisch:at, timestamp=1652606448146, value=10:10am  
+ 1                    column=flisch:delay, timestamp=1652606482889, value=22    
+ 1                    column=flisch:dt, timestamp=1652606459597, value=11:10am  
+1 row(s) in 0.0360 seconds
+
+hbase(main):010:0> put 'fli',2,'fliinfo:source','pUNE'
+0 row(s) in 0.0100 seconds
+
+hbase(main):011:0> put 'fli',2,'fliinfo:destination','kolkata'
+0 row(s) in 0.0120 seconds
+
+hbase(main):012:0> put 'fli',2,'fliinfo:year',2002
+0 row(s) in 0.0070 seconds
+
+hbase(main):013:0> put 'fli',2,'flisch:at','10.20'
+0 row(s) in 0.0170 seconds
+
+hbase(main):014:0> put 'fli',2,'flisch:dt','11.20'
+0 row(s) in 0.0080 seconds
+
+hbase(main):015:0> put 'fli',2,'flisch:delay',30
+0 row(s) in 0.0120 seconds
+
+hbase(main):016:0> scan 'fli'
+ROW                   COLUMN+CELL                                               
+ 1                    column=fliinfo:destination, timestamp=1652606252610, value
+                      =chennai                                                  
+ 1                    column=fliinfo:source, timestamp=1652606202921, value=Mumb
+                      ai                                                        
+ 1                    column=fliinfo:year, timestamp=1652606363910, value=2050  
+ 1                    column=flisch:at, timestamp=1652606448146, value=10:10am  
+ 1                    column=flisch:delay, timestamp=1652606482889, value=22    
+ 1                    column=flisch:dt, timestamp=1652606459597, value=11:10am  
+ 2                    column=fliinfo:destination, timestamp=1652606713882, value
+                      =kolkata                                                  
+ 2                    column=fliinfo:source, timestamp=1652606689611, value=pUNE
+ 2                    column=fliinfo:year, timestamp=1652606729469, value=2002  
+ 2                    column=flisch:at, timestamp=1652606764776, value=10.20    
+ 2                    column=flisch:delay, timestamp=1652606803862, value=30    
+ 2                    column=flisch:dt, timestamp=1652606775535, value=11.20    
+2 row(s) in 0.0560 seconds
+
+hbase(main):017:0> 
+hbase(main):018:0* scan 'fli'
+ROW                   COLUMN+CELL                                               
+ 1                    column=fliinfo:destination, timestamp=1652606252610, value
+                      =chennai                                                  
+ 1                    column=fliinfo:source, timestamp=1652606202921, value=Mumb
+                      ai                                                        
+ 1                    column=fliinfo:year, timestamp=1652606363910, value=2050  
+ 1                    column=flisch:at, timestamp=1652606448146, value=10:10am  
+ 1                    column=flisch:delay, timestamp=1652606482889, value=22    
+ 1                    column=flisch:dt, timestamp=1652606459597, value=11:10am  
+ 2                    column=fliinfo:destination, timestamp=1652606713882, value
+                      =kolkata                                                  
+ 2                    column=fliinfo:source, timestamp=1652606689611, value=pUNE
+ 2                    column=fliinfo:year, timestamp=1652606729469, value=2002  
+ 2                    column=flisch:at, timestamp=1652606764776, value=10.20    
+ 2                    column=flisch:delay, timestamp=1652606803862, value=30    
+ 2                    column=flisch:dt, timestamp=1652606775535, value=11.20    
+2 row(s) in 0.0590 seconds
+
+hbase(main):019:0> alter 'fli',NAME=>'cost'
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.1870 seconds
+
+hbase(main):020:0> put 'fli',2,'cost:startcost':4
+SyntaxError: (hbase):20: syntax error, unexpected ':'
+
+put 'fli',2,'cost:startcost':4
+                            ^
+
+hbase(main):021:0> put 'fli',2,'cost:startcost',45
+0 row(s) in 0.0090 seconds
+
+hbase(main):022:0> scan 'fli'
+ROW                   COLUMN+CELL                                               
+ 1                    column=fliinfo:destination, timestamp=1652606252610, value
+                      =chennai                                                  
+ 1                    column=fliinfo:source, timestamp=1652606202921, value=Mumb
+                      ai                                                        
+ 1                    column=fliinfo:year, timestamp=1652606363910, value=2050  
+ 1                    column=flisch:at, timestamp=1652606448146, value=10:10am  
+ 1                    column=flisch:delay, timestamp=1652606482889, value=22    
+ 1                    column=flisch:dt, timestamp=1652606459597, value=11:10am  
+ 2                    column=cost:startcost, timestamp=1652607990461, value=45  
+ 2                    column=fliinfo:destination, timestamp=1652606713882, value
+                      =kolkata                                                  
+ 2                    column=fliinfo:source, timestamp=1652606689611, value=pUNE
+ 2                    column=fliinfo:year, timestamp=1652606729469, value=2002  
+ 2                    column=flisch:at, timestamp=1652606764776, value=10.20    
+ 2                    column=flisch:delay, timestamp=1652606803862, value=30    
+ 2                    column=flisch:dt, timestamp=1652606775535, value=11.20    
+2 row(s) in 0.0550 seconds
+
+hbase(main):023:0> alter 'fli',NAME=>'cost',METHOD=>'delete'
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.1770 seconds
+
+hbase(main):024:0> scan 'fli'
+ROW                   COLUMN+CELL                                               
+ 1                    column=fliinfo:destination, timestamp=1652606252610, value
+                      =chennai                                                  
+ 1                    column=fliinfo:source, timestamp=1652606202921, value=Mumb
+                      ai                                                        
+ 1                    column=fliinfo:year, timestamp=1652606363910, value=2050  
+ 1                    column=flisch:at, timestamp=1652606448146, value=10:10am  
+ 1                    column=flisch:delay, timestamp=1652606482889, value=22    
+ 1                    column=flisch:dt, timestamp=1652606459597, value=11:10am  
+ 2                    column=fliinfo:destination, timestamp=1652606713882, value
+                      =kolkata                                                  
+ 2                    column=fliinfo:source, timestamp=1652606689611, value=pUNE
+ 2                    column=fliinfo:year, timestamp=1652606729469, value=2002  
+ 2                    column=flisch:at, timestamp=1652606764776, value=10.20    
+ 2                    column=flisch:delay, timestamp=1652606803862, value=30    
+ 2                    column=flisch:dt, timestamp=1652606775535, value=11.20    
+2 row(s) in 0.0520 seconds
+
+hbase(main):025:0> create 'temp','ctemp'
+0 row(s) in 0.1780 seconds
+
+=> Hbase::Table - temp
+hbase(main):026:0> list
+TABLE                                                                           
+fli                                                                             
+flight                                                                          
+temp                                                                            
+3 row(s) in 0.0250 seconds
+
+=> ["fli", "flight", "temp"]
+hbase(main):027:0> drop 'temp'
+
+ERROR: Table temp is enabled. Disable it first.'
+
+Here is some help for this command:
+Drop the named table. Table must first be disabled:
+  hbase> drop 't1'
+  hbase> drop 'ns1:t1'
+
+
+hbase(main):028:0> disable 'temp'
+0 row(s) in 1.2160 seconds
+
+hbase(main):029:0> drop 'temp'
+0 row(s) in 0.1930 seconds
+
+hbase(main):030:0> list
+TABLE                                                                           
+fli                                                                             
+flight                                                                          
+2 row(s) in 0.0110 seconds
+
+=> ["fli", "flight"]
+hbase(main):031:0> get 'fli' 1
+SyntaxError: (hbase):31: syntax error, unexpected tINTEGER
+
+get 'fli' 1
+          ^
+
+hbase(main):032:0> get 'fli', 1
+COLUMN                CELL                                                      
+ fliinfo:destination  timestamp=1652606252610, value=chennai                    
+ fliinfo:source       timestamp=1652606202921, value=Mumbai                     
+ fliinfo:year         timestamp=1652606363910, value=2050                       
+ flisch:at            timestamp=1652606448146, value=10:10am                    
+ flisch:delay         timestamp=1652606482889, value=22                         
+ flisch:dt            timestamp=1652606459597, value=11:10am                    
+6 row(s) in 0.0220 seconds
+
+hbase(main):033:0> get 'fli', 1,COLUMN=>'fliinfo:source'
+COLUMN                CELL                                                      
+ fliinfo:source       timestamp=1652606202921, value=Mumbai                     
+1 row(s) in 0.0140 seconds
+
+hbase(main):034:0> 

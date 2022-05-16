@@ -1,0 +1,19 @@
+web scraping
+
+- Web Scraping is the technique used by programmers to automate the process of
+ finding and extracting data from the internet within a relatively short time.
+- using Python, Requests, and BeautifulSoup to scrap some pages
+- To scrap and extract any information from the internet, you’ll probably need to go through three stages: 
+  Fetching HTML, Obtaining HTML Tree, then Extracting information from the tree.
+  (HTML tree is a representation of the different levels of the HTML code, it shows the hierarchy of the code.)
+- We will use the Requests library to fetch the HTML code from a specific URL. Then, we will use BeautifulSoup to Parse and Extract the HTML tree, and finally,
+  we will use pure Python to organize the data.
+
+Basic Scraping ::
+step 1 : Install BeautifulSoup - pip install bs4
+step 2 : from bs4 import BeautifulSoup as bs
+         import requests as rq
+step3 : url = 'https://en.wikipedia.org/wiki/List_of_countries_by_coffee_production' //fetching main url to html code
+	#Extract HTMl tree
+	page = rq.get(url).text 
+	soup = bs(page) //feed html to beautifulsoup
